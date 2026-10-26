@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en" style="--mouse-x: 446px; --mouse-y: 353px;"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marvi Nebres · IT &amp; Creative Portfolio</title>
+<!-- Google Fonts: Syne, Plus Jakarta Sans, Cormorant Garamond, and Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;family=Syne:wght@700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Font Awesome CDN for UI Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Configuration - Monochromatic Editorial Theme -->
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            surface: {
+              950: '#070708',
+              900: '#0e0e11',
+              850: '#141418',
+              800: '#1b1b22',
+              700: '#272730',
+              600: '#383842',
+            },
+            silver: {
+              100: '#ffffff',
+              200: '#f4f4f6',
+              300: '#e4e4e7',
+              400: '#d4d4d8',
+              500: '#a1a1aa',
+              600: '#71717a',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Syne"', 'sans-serif'],
+            editorial: ['"Cormorant Garamond"', 'serif'],
+            mono: ['"Space Grotesk"', 'monospace'],
+          },
+          borderRadius: {
+            '2xl': '1.25rem',
+            '3xl': '1.75rem',
+            '4xl': '2.25rem',
+            '5xl': '3rem',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styling">
+    :root {
+      --mouse-x: 50%;
+      --mouse-y: 50%;
+    }
+    
+    .font-editorial-italic {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+    }
+    .card-drop-shadow {
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 35px -5px rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Interactive cursor spotlight layer */
+    .spotlight-overlay {
+      background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.07), rgba(200, 200, 220, 0.02) 40%, transparent 70%);
+      transition: background 0.05s ease;
+    }
+    
+    /* Monochromatic Surface Gradients */
+    .bg-gradient-obsidian {
+      background: linear-gradient(150deg, #17171a 0%, #101013 45%, #0a0a0c 100%);
+    }
+    .bg-gradient-sheen {
+      background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.015) 50%, rgba(0,0,0,0.4) 100%);
+    }
+    .border-gradient-silver {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      position: relative;
+    }
+    .border-gradient-silver:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 10px 35px -10px rgba(255, 255, 255, 0.09);
+    }
+
+    /* Ambient noise & gradient illumination */
+    .ambient-radial-glow {
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.07) 0%, rgba(35, 35, 42, 0.15) 35%, rgba(10, 10, 12, 0) 70%);
+    }
+
+    /* Button shimmer & sheen */
+    .btn-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shimmer::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transform: rotate(25deg) translateY(-100%);
+      transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .btn-shimmer:hover::before {
+      transform: rotate(25deg) translateY(100%);
+    }
+
+    /* Interactive Card Hover dynamic glow */
+    .interactive-card {
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .interactive-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 255, 255, 0.09);
+    }
+
+    /* Reference Starburst / Anime Star Poly */
+    .starburst-4 {
+      clip-path: polygon(50% 0%, 59% 36%, 100% 50%, 59% 64%, 50% 100%, 41% 64%, 0% 50%, 41% 36%);
+    }
+    .starburst-8 {
+      clip-path: polygon(50% 0%, 59% 29%, 85% 15%, 71% 41%, 100% 50%, 71% 59%, 85% 85%, 59% 71%, 50% 100%, 41% 71%, 15% 85%, 29% 59%, 0% 50%, 29% 41%, 15% 15%, 41% 29%);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .spotlight-overlay {
+        background: radial-gradient(700px circle at 50% 30%, rgba(255, 255, 255, 0.05), transparent 70%);
+      }
+      .interactive-card, .btn-shimmer::before {
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#09090b] text-zinc-200 font-sans antialiased selection:bg-white selection:text-black relative" data-mode="connect">
+<!-- Dynamic Cursor Spotlight Layer -->
+<div aria-hidden="true" class="spotlight-overlay fixed inset-0 pointer-events-none z-30 transition-opacity duration-300"></div>
+<!-- Ambient Atmospheric Radial Lighting in Background -->
+<div class="fixed inset-0 pointer-events-none ambient-radial-glow z-0"></div>
+<!-- BEGIN: SiteNavigation -->
+<nav class="sticky top-0 z-50 backdrop-blur-xl bg-[#09090b]/85 border-b border-white/10 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<!-- Logo Wordmark -->
+<a class="flex items-center gap-2.5 group" href="#home">
+<span class="w-9 h-9 rounded-xl bg-gradient-to-br from-white via-zinc-100 to-zinc-400 text-black flex items-center justify-center font-mono font-bold text-sm shadow-[0_0_15px_rgba(255,255,255,0.25)] group-hover:scale-105 group-hover:shadow-[0_0_22px_rgba(255,255,255,0.45)] transition-all duration-200">
+          mn.
+        </span>
+<div class="flex flex-col">
+<span class="text-white font-display font-bold tracking-tight text-lg leading-tight group-hover:text-zinc-300 transition-colors uppercase">Marvi Nebres</span>
+<span class="font-mono text-[10px] tracking-widest text-zinc-400 uppercase">IT &amp; Creative Portfolio</span>
+</div>
+</a>
+<!-- Desktop Nav Links -->
+<div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+<a class="text-zinc-400 hover:text-white transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-white after:transition-all" href="#home">Home</a>
+<a class="text-zinc-400 hover:text-white transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-white after:transition-all" href="#competencies">About / Competencies</a>
+<a class="text-zinc-400 hover:text-white transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-white after:transition-all" href="#works">Projects</a>
+<a class="text-zinc-400 hover:text-white transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-white after:transition-all" href="#contact">Contact</a>
+</div>
+<!-- Action Button & Mobile Menu Toggle -->
+<div class="flex items-center gap-3">
+<a class="btn-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-white via-zinc-100 to-zinc-200 hover:from-white hover:to-white text-black font-mono font-bold text-xs tracking-wider uppercase transition-all duration-200 shadow-[0_4px_20px_rgba(255,255,255,0.18)] hover:shadow-[0_6px_25px_rgba(255,255,255,0.35)] hover:-translate-y-0.5" href="#contact">
+<i class="fa-solid fa-paper-plane text-[11px]"></i>
+<span class="">Get in Touch</span>
+</a>
+<!-- Mobile menu button -->
+<button aria-label="Toggle Navigation Menu" class="md:hidden text-zinc-400 hover:text-white p-2 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+<i class="fa-solid fa-bars text-lg"></i>
+</button>
+</div>
+</div>
+<!-- Mobile Dropdown Navigation -->
+<div class="md:hidden hidden bg-[#0c0c0f] border-b border-white/10 px-6 py-4 space-y-3 font-mono text-sm" id="mobile-menu">
+<a class="block text-zinc-300 hover:text-white py-1" href="#home" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+<a class="block text-zinc-300 hover:text-white py-1" href="#competencies" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About / Competencies</a>
+<a class="block text-zinc-300 hover:text-white py-1" href="#works" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Projects</a>
+<a class="block text-zinc-300 hover:text-white py-1" href="#contact" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+</div>
+</nav>
+<!-- END: SiteNavigation -->
+<!-- BEGIN: MainContent -->
+<main class="relative overflow-hidden flex flex-col items-center z-10">
+<!-- Atmospheric subtle monochrome backdrop glow and gradients -->
+<div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-white/[0.08] via-zinc-400/[0.03] to-transparent rounded-full blur-[140px] pointer-events-none -z-10"></div>
+<div class="absolute top-[35%] right-[-10%] w-[700px] h-[700px] bg-radial from-zinc-500/10 via-zinc-700/5 to-transparent rounded-full blur-[160px] pointer-events-none -z-10"></div>
+<div class="absolute bottom-10 left-[-10%] w-[600px] h-[600px] bg-white/[0.03] rounded-full blur-[150px] pointer-events-none -z-10"></div>
+<div class="w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-8 md:py-14 space-y-16 md:space-y-24">
+<!-- ========================================== -->
+<!-- HERO SECTION                               -->
+<!-- ========================================== -->
+<section class="relative" id="home">
+<div class="interactive-card bg-gradient-obsidian border-gradient-silver rounded-4xl sm:rounded-5xl p-6 sm:p-10 md:p-14 relative overflow-hidden card-drop-shadow">
+<!-- Ambient internal surface highlights -->
+<div class="absolute inset-0 bg-gradient-sheen pointer-events-none"></div>
+<!-- Background Graphic Starbursts & Accent Backdrop Slabs -->
+<div class="absolute top-8 right-16 w-20 h-20 starburst-8 bg-white/20 blur-[0.5px] pointer-events-none z-0"></div>
+<div class="absolute top-28 right-72 w-10 h-10 starburst-4 bg-zinc-300/30 pointer-events-none z-0"></div>
+<div class="absolute bottom-16 right-20 w-16 h-16 starburst-4 bg-zinc-400/20 pointer-events-none z-0"></div>
+<!-- Graphic Horizontal Accent Bar -->
+<div class="absolute top-1/2 -translate-y-6 right-4 sm:right-12 w-64 sm:w-80 h-12 sm:h-14 bg-gradient-to-r from-zinc-800/80 via-zinc-700/60 to-zinc-900/90 rounded-2xl border border-white/10 -rotate-2 pointer-events-none z-0 shadow-lg"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+<!-- Left Column: Editorial & Bio -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Top Sub-tag Badge -->
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#18181b]/90 border border-white/20 text-[11px] font-mono font-bold tracking-wider text-zinc-300 uppercase shadow-inner">
+<span class="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_#ffffff] animate-ping"></span>
+<span class="">4th Year BSIT Student · Cebu Eastern College, Inc.</span>
+</div>
+<!-- Main Title -->
+<div class="space-y-2">
+<div class="text-xs font-mono tracking-widest text-zinc-400 uppercase">Hello! I Am / Portfolio</div>
+<h1 class="text-4xl sm:text-6xl md:text-7xl font-display font-black text-white tracking-tight leading-none uppercase bg-gradient-to-b from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent">
+                  Marvi Nebres.
+                </h1>
+<p class="font-editorial-italic text-2xl sm:text-3xl md:text-4xl text-zinc-300 leading-snug">
+                  Blending technical knowledge with creative expression.
+                </p>
+</div>
+<!-- Bio Paragraph -->
+<p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-xl font-normal">
+                I'm a fourth-year Bachelor of Science in Information Technology student at Cebu Eastern College, Inc., with an interest in technology, digital art, and web design. I enjoy exploring how creativity and technical knowledge can come together to create meaningful digital experiences.
+              </p>
+<!-- Text-only Digital Artist Badge (icon thumbnail removed) -->
+<div class="inline-flex items-center px-4 py-2 rounded-full bg-[#19191e] border border-white/15 shadow-inner">
+<span class="text-xs font-mono tracking-wide text-zinc-300">Digital Artist · Character Concept &amp; Web UI</span>
+</div>
+<!-- Primary CTA Action Buttons -->
+<div class="pt-1 flex flex-wrap items-center gap-3">
+<a class="btn-shimmer px-6 py-3 rounded-full bg-gradient-to-r from-white via-zinc-100 to-zinc-200 hover:from-white hover:to-white text-black font-mono font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_4px_22px_rgba(255,255,255,0.22)] hover:shadow-[0_6px_30px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-flex items-center gap-2" href="#works">
+<span class="">Explore My Work</span>
+<i class="fa-solid fa-arrow-down text-[10px]"></i>
+</a>
+<a class="px-6 py-3 rounded-full bg-[#1c1c20] hover:bg-zinc-800 text-zinc-200 border border-white/15 hover:border-white/40 font-mono font-bold text-xs uppercase tracking-wider transition-all duration-200 inline-flex items-center gap-2 shadow-md hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(255,255,255,0.12)]" href="#competencies">
+<span class="">About Me</span>
+<i class="fa-solid fa-user-astronaut text-[11px]"></i>
+</a>
+</div>
+<!-- Social Links (GitHub and email contact) -->
+<div class="pt-2 flex items-center gap-2.5">
+<a aria-label="GitHub Profile" class="w-10 h-10 rounded-2xl bg-[#1e1e24] border border-white/20 flex items-center justify-center text-zinc-200 hover:text-black hover:bg-white hover:border-white transition-all duration-200 hover:scale-105 shadow hover:shadow-[0_0_18px_rgba(255,255,255,0.3)] font-mono text-xs font-bold" href="https://github.com" rel="noopener noreferrer" target="_blank" title="GitHub">
+<i class="fa-brands fa-github text-base"></i>
+</a>
+<a aria-label="Send Email" class="w-10 h-10 rounded-2xl bg-[#1e1e24] border border-white/20 flex items-center justify-center text-zinc-200 hover:text-black hover:bg-white hover:border-white transition-all duration-200 hover:scale-105 shadow hover:shadow-[0_0_18px_rgba(255,255,255,0.3)] font-mono text-xs font-bold" href="mailto:marvi.nebres.it@example.com" title="Direct Email">
+<i class="fa-solid fa-envelope text-sm"></i>
+</a>
+</div>
+</div>
+<!-- Right Column: Expressive Character Cutout / Silhouette Seamlessly Blended -->
+<div class="lg:col-span-5 flex flex-col items-center justify-center relative min-h-[380px] sm:min-h-[440px]">
+<!-- Graphic Backing Elements: Accent starbursts -->
+<div class="absolute -top-6 right-2 w-24 h-24 starburst-8 bg-white/25 pointer-events-none z-0"></div>
+<div class="absolute top-1/3 -left-6 w-14 h-14 starburst-4 bg-zinc-300/30 pointer-events-none z-0"></div>
+<div class="absolute bottom-8 right-6 w-16 h-16 starburst-4 bg-white/20 pointer-events-none z-0"></div>
+<!-- Silhouette Container -->
+<div class="relative w-full max-w-[320px] aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-950 p-2 shadow-2xl group border border-white/20 hover:border-white/50 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.85)] z-10">
+<div class="w-full h-full rounded-2xl overflow-hidden bg-black relative">
+<img alt="Marvi Nebres Character Concept Art" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChJ29JDF5PrNzGrRQB-LF_EVDcW-qSfYr8IH7v45CztcHLvQ_IKr8HmR6h1ht6tBenefC6DqH1x6DmrPZ83FN3Ic9TZbprn0hWRMbTFcTnOQfc6j-Y71clGiWM3eqpxViY9IYR53AJ5slJ0SxMNhj2-U9h88G3ftvyRo9av5GwF9aI04LM6tUSOg2_Q7EHcO-RxV9pEukvhM49IP_QU39efX7t-0RQ5DrzvIxfKtBd8t3JKxcmLTdD"/>
+<div class="absolute bottom-3 right-3 w-8 h-8 starburst-8 bg-white/40 drop-shadow"></div>
+<div class="absolute bottom-3 left-3 text-left drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+<p class="font-editorial-italic text-2xl text-white leading-none font-bold">Marvi Nebres</p>
+<p class="font-mono text-[10px] uppercase tracking-widest text-zinc-300 font-semibold mt-0.5">Artist &amp; IT Developer</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- ======================================================== -->
+<!-- SECTION 01: CORE COMPETENCIES & TECHNICAL PROFICIENCY   -->
+<!-- ======================================================== -->
+<section class="relative" id="competencies">
+<div class="interactive-card bg-gradient-obsidian border-gradient-silver rounded-4xl sm:rounded-5xl p-6 sm:p-10 md:p-12 relative overflow-hidden card-drop-shadow">
+<!-- Ambient internal sheen -->
+<div class="absolute inset-0 bg-gradient-sheen pointer-events-none"></div>
+<!-- Decorative Monochromatic Sakura / Emblem Motif -->
+<div class="absolute -right-16 -top-10 w-96 h-96 opacity-10 pointer-events-none text-white flex items-center justify-center">
+<svg class="w-full h-full fill-current" viewbox="0 0 200 200">
+<path d="M100 15 C115 50 145 60 170 45 C155 75 165 110 190 120 C155 130 145 165 155 195 C125 180 95 190 85 215 C75 185 45 175 20 190 C35 160 25 125 0 115 C35 105 45 70 35 40 C65 55 95 45 100 15 Z" fill-rule="evenodd" transform="translate(0, -10)"></path>
+<circle cx="100" cy="100" fill="none" r="30" stroke="currentColor" stroke-width="4"></circle>
+</svg>
+</div>
+<!-- Prominent Section Heading with Big Syne Index -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 border-b border-white/10 pb-5 relative z-10">
+<div class="flex items-baseline gap-4">
+<span class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white/90 tracking-tighter leading-none select-none">01</span>
+<div class="flex flex-col">
+<span class="font-mono text-[11px] text-zinc-400 font-bold uppercase tracking-widest">// Focus, Capabilities &amp; Methods</span>
+<h2 class="text-2xl sm:text-4xl font-display font-black text-white tracking-tight uppercase bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+                  Core Competencies &amp; Technical Proficiency
+                </h2>
+</div>
+</div>
+<span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">[Toolbox &amp; Practice]</span>
+</div>
+<!-- 5 Capability Domains Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+<!-- Domain 01: Digital Art & Creative Design -->
+<div class="interactive-card bg-gradient-to-b from-[#1c1c22] via-[#16161b] to-[#111114] border border-white/15 hover:border-white/35 rounded-3xl p-7 flex flex-col justify-between transition-all shadow-xl group">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="w-11 h-11 rounded-2xl bg-white/5 border border-white/15 flex items-center justify-center text-white text-base shadow-inner group-hover:scale-105 transition-transform duration-300">
+<i class="fa-solid fa-paintbrush"></i>
+</div>
+<span class="font-mono text-xs text-zinc-400 tracking-wider">01</span>
+</div>
+<div>
+<span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">Visual Arts</span>
+<h3 class="text-lg font-display font-bold text-white leading-tight">Digital Art &amp; Creative Design</h3>
+</div>
+<ul class="space-y-2.5 text-xs sm:text-sm text-zinc-300 pt-2 border-t border-white/10">
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Digital Illustration</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Character Design</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Digital Painting</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Visual Composition</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Domain 02: Frontend Development & UI Design -->
+<div class="interactive-card bg-gradient-to-b from-[#1c1c22] via-[#16161b] to-[#111114] border border-white/15 hover:border-white/35 rounded-3xl p-7 flex flex-col justify-between transition-all shadow-xl group">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="w-11 h-11 rounded-2xl bg-white/5 border border-white/15 flex items-center justify-center text-white text-base shadow-inner group-hover:scale-105 transition-transform duration-300">
+<i class="fa-solid fa-bezier-curve"></i>
+</div>
+<span class="font-mono text-xs text-zinc-400 tracking-wider">02</span>
+</div>
+<div>
+<span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">Interface Engineering</span>
+<h3 class="text-lg font-display font-bold text-white leading-tight">Frontend Development &amp; UI Design</h3>
+</div>
+<ul class="space-y-2.5 text-xs sm:text-sm text-zinc-300 pt-2 border-t border-white/10">
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>HTML &amp; CSS</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>JavaScript</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Responsive Web Design</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>UI Prototyping</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Frontend Debugging</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Domain 03: Programming -->
+<div class="interactive-card bg-gradient-to-b from-[#1c1c22] via-[#16161b] to-[#111114] border border-white/15 hover:border-white/35 rounded-3xl p-7 flex flex-col justify-between transition-all shadow-xl group">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="w-11 h-11 rounded-2xl bg-white/5 border border-white/15 flex items-center justify-center text-white text-base shadow-inner group-hover:scale-105 transition-transform duration-300">
+<i class="fa-solid fa-code"></i>
+</div>
+<span class="font-mono text-xs text-zinc-400 tracking-wider">03</span>
+</div>
+<div>
+<span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">Core Logic</span>
+<h3 class="text-lg font-display font-bold text-white leading-tight">Programming</h3>
+</div>
+<ul class="space-y-2.5 text-xs sm:text-sm text-zinc-300 pt-2 border-t border-white/10">
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Programming Fundamentals</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Domain 04: IT Infrastructure & Networking -->
+<div class="interactive-card bg-gradient-to-b from-[#1c1c22] via-[#16161b] to-[#111114] border border-white/15 hover:border-white/35 rounded-3xl p-7 flex flex-col justify-between transition-all shadow-xl group md:col-span-1 lg:col-span-2">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="w-11 h-11 rounded-2xl bg-white/5 border border-white/15 flex items-center justify-center text-white text-base shadow-inner group-hover:scale-105 transition-transform duration-300">
+<i class="fa-solid fa-network-wired"></i>
+</div>
+<span class="font-mono text-xs text-zinc-400 tracking-wider">04</span>
+</div>
+<div>
+<span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">Systems &amp; Architecture</span>
+<h3 class="text-lg font-display font-bold text-white leading-tight">IT Infrastructure &amp; Networking</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs sm:text-sm text-zinc-300 pt-2 border-t border-white/10">
+<div class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Computer Hardware &amp; OS Configuration</span>
+</div>
+<div class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>TCP/IP &amp; IPv4 Networking</span>
+</div>
+<div class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>LAN Configuration</span>
+</div>
+<div class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Network Cabling &amp; RJ45 Termination</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Domain 05: Software & Development Tools -->
+<div class="interactive-card bg-gradient-to-b from-[#1c1c22] via-[#16161b] to-[#111114] border border-white/15 hover:border-white/35 rounded-3xl p-7 flex flex-col justify-between transition-all shadow-xl group md:col-span-1 lg:col-span-1">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="w-11 h-11 rounded-2xl bg-white/5 border border-white/15 flex items-center justify-center text-white text-base shadow-inner group-hover:scale-105 transition-transform duration-300">
+<i class="fa-solid fa-screwdriver-wrench"></i>
+</div>
+<span class="font-mono text-xs text-zinc-400 tracking-wider">05</span>
+</div>
+<div>
+<span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">Developer Ecosystem</span>
+<h3 class="text-lg font-display font-bold text-white leading-tight">Software &amp; Development Tools</h3>
+</div>
+<ul class="space-y-2.5 text-xs sm:text-sm text-zinc-300 pt-2 border-t border-white/10">
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Visual Studio Code</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Android Studio</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Git &amp; GitHub</span>
+</li>
+<li class="flex items-start gap-2.5">
+<i class="fa-solid fa-check text-white mt-1 text-xs"></i>
+<span>Figma</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Metrics Pill Bar -->
+<div class="mt-10 flex justify-center relative z-10">
+<div class="bg-gradient-to-r from-[#17171b] via-[#212128] to-[#17171b] border border-white/20 rounded-full px-6 sm:px-12 py-4 flex items-center justify-between gap-6 sm:gap-14 shadow-2xl hover:border-white/40 transition-all duration-300">
+<div class="text-center">
+<p class="text-xl sm:text-3xl font-display font-black text-white">4th Year BSIT</p>
+<p class="text-[11px] font-mono text-zinc-400 font-medium uppercase tracking-wider">Candidate 2025</p>
+</div>
+<div class="w-px h-8 bg-gradient-to-b from-transparent via-zinc-700 to-transparent"></div>
+<div class="text-center">
+<p class="text-xl sm:text-3xl font-display font-black text-white">Cebu Eastern College</p>
+<p class="text-[11px] font-mono text-zinc-400 font-medium uppercase tracking-wider">College of Information Technology</p>
+</div>
+<div class="w-px h-8 bg-gradient-to-b from-transparent via-zinc-700 to-transparent"></div>
+<div class="text-center">
+<p class="text-xl sm:text-3xl font-display font-black text-white">Freelance Digital Artist</p>
+<p class="text-[11px] font-mono text-zinc-400 font-medium uppercase tracking-wider">Commissions &amp; Concept Art</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Section 01 -->
+<!-- ======================================================== -->
+<!-- SECTION 02: SELECTED WORK & PORTFOLIO SHOWCASE           -->
+<!-- ======================================================== -->
+<section class="relative" id="works">
+<!-- Section Header with Big Syne 02 -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div class="flex items-baseline gap-4">
+<span class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white/90 tracking-tighter leading-none select-none">02</span>
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-mono text-[11px] text-zinc-400 font-bold uppercase tracking-widest">// Portfolio Showcase</span>
+<div class="w-4 h-4 starburst-4 bg-gradient-to-b from-white to-zinc-300 shadow-[0_0_12px_rgba(255,255,255,0.4)]"></div>
+</div>
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-display font-black text-white tracking-tight uppercase bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+              Selected Work &amp; Portfolio
+            </h2>
+<p class="font-editorial-italic text-lg sm:text-xl text-zinc-300">
+              Bridging artistic intuition with computational logic.
+            </p>
+</div>
+</div>
+<!-- Interactive Filter Tabs -->
+<div class="flex items-center bg-[#18181c] p-1.5 rounded-full border border-white/15 shadow-inner">
+<button class="px-5 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 bg-white text-black shadow-sm" id="tab-art-btn" onclick="switchWorkTab('art')" type="button">
+          Art Showcase / My Works
+        </button>
+<button class="px-5 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 text-zinc-400 hover:text-white" id="tab-academic-btn" onclick="switchWorkTab('academic')" type="button">
+          Academic Projects
+        </button>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- TAB CONTENT A: DIGITAL ART & CONCEPT SHOWCASE            -->
+<!-- ======================================================== -->
+<div class="space-y-6 transition-opacity duration-300" id="tab-art-content">
+<div class="interactive-card bg-gradient-obsidian border-gradient-silver rounded-3xl p-6 sm:p-8 card-drop-shadow overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-sheen pointer-events-none"></div>
+<div class="relative z-10 space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+<div>
+<span class="font-mono text-[11px] uppercase tracking-wider text-zinc-400 font-bold">Showcase Gallery // 01</span>
+<h3 class="text-xl sm:text-2xl font-display font-bold text-white uppercase tracking-tight">Character Concepts &amp; Original Art</h3>
+</div>
+<span class="font-mono text-xs text-zinc-400">Clip Studio Paint · MediBang · HiPaint</span>
+</div>
+<!-- Art Grid Showcase -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Artwork Item 1 -->
+<div class="group relative rounded-2xl overflow-hidden bg-black border border-white/15 hover:border-white/50 transition-all duration-300 shadow-xl">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Portrait Character Art with Piercings and Glasses" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChJ29JDF5PrNzGrRQB-LF_EVDcW-qSfYr8IH7v45CztcHLvQ_IKr8HmR6h1ht6tBenefC6DqH1x6DmrPZ83FN3Ic9TZbprn0hWRMbTFcTnOQfc6j-Y71clGiWM3eqpxViY9IYR53AJ5slJ0SxMNhj2-U9h88G3ftvyRo9av5GwF9aI04LM6tUSOg2_Q7EHcO-RxV9pEukvhM49IP_QU39efX7t-0RQ5DrzvIxfKtBd8t3JKxcmLTdD"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity p-4 flex flex-col justify-end">
+<span class="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">Character Study · Noir</span>
+<h4 class="font-editorial-italic text-xl text-white font-bold leading-tight">Gothic Cyberpunk Profile</h4>
+<p class="font-mono text-[11px] text-zinc-300 mt-1">Detailed ink lineart, textured digital rendering</p>
+</div>
+</div>
+<!-- Artwork Item 2 -->
+<div class="group relative rounded-2xl overflow-hidden bg-black border border-white/15 hover:border-white/50 transition-all duration-300 shadow-xl">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Long Haired Character with Cross Necklace and Glasses" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7rexN_WloBIk4MJ4-z4z2qarfSVhOA63FyBQ-zs182M8BY8toQIpAWKdN0djvX5VW_q_1ryY8sUHLZW9JwN1yS5rbq7MuoSyqm8rd_1ITC9H0-mwRkGdaAV5uzntD_r_Ct4p190I9xDghPFIx6XRHTsGfC5ti03tZzJ1KFSlpM9Kl7gMZbYt6y0uvpNrnjWFQL0ZzZuWmYAGSAaT-MNFLfUBQceV1KwhtC7dc6AfAuvPKL9qB-4kW"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity p-4 flex flex-col justify-end">
+<span class="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">Original Character · Concept</span>
+<h4 class="font-editorial-italic text-xl text-white font-bold leading-tight">Nocturne Maiden</h4>
+<p class="font-mono text-[11px] text-zinc-300 mt-1">Cross motif, graphite-styled digital textures</p>
+</div>
+</div>
+<!-- Artwork Item 3: Horned Anime Character with Teal Hair & Glasses -->
+<div class="group relative rounded-2xl overflow-hidden bg-black border border-white/15 hover:border-white/50 transition-all duration-300 shadow-xl sm:col-span-2 lg:col-span-1">
+<div class="aspect-[3/4] overflow-hidden bg-zinc-950">
+<img alt="Horned character with teal hair and glasses" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMABjvBvoW5tWTK648wFMmCu-58Ttw6MOl_nUkGf63aDx9HrcQAQn097ORwn2G_aw3CuZTeVgttcJ_xpYt34x2uG6nBXGtAGw5Xvte_gCsY3roJr5HMOUXVPVA6kJbR85KAxwihIF5Uu3I3xpv9JNgdiyn3G-tDCUuwuOJ0p7EEl_GtwqLrX_j3JGelk9DF0gitoll79s9S-qQdJ9oFrsG0k5QwGvJzmJOqGbLyjAcKTgnBKgjcz55"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity p-4 flex flex-col justify-end">
+<span class="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">Original Character · Concept</span>
+<h4 class="font-editorial-italic text-xl text-white font-bold leading-tight">Astral Horned Scholar</h4>
+<p class="font-mono text-[11px] text-zinc-300 mt-1">Teal hair tones, cosmic cheek insignias &amp; tailored formal suit</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- TAB CONTENT B: ACADEMIC & CAPSTONE PROJECTS              -->
+<!-- ======================================================== -->
+<div class="space-y-6 hidden transition-opacity duration-300" id="tab-academic-content">
+<!-- Card 1: AgriMuch Capstone -->
+<div class="interactive-card bg-gradient-obsidian border-gradient-silver rounded-3xl p-6 sm:p-8 card-drop-shadow hover:border-white/40 transition-all duration-300 overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-sheen pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
+<div class="lg:col-span-8 space-y-3.5">
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="font-mono text-xs text-zinc-400 uppercase tracking-wider font-semibold">IT Capstone Project · Ongoing</span>
+</div>
+<h3 class="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">
+            AgriMuch — Smart Market &amp; Produce Availability System
+          </h3>
+<p class="text-sm text-zinc-300 leading-relaxed font-normal">
+            An AI-assisted dish recognition and ingredients app (currently ongoing project) that aims to help consumers identify ingredients and make their cooking experience more convenient and accessible.
+          </p>
+</div>
+<div class="lg:col-span-4 flex justify-center">
+<div class="w-full max-w-[240px] aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 bg-black shadow-xl group hover:border-white/50 transition-all flex items-center justify-center p-2 bg-gradient-to-b from-zinc-900 to-black">
+<img alt="AgriMuch system mockup visualization" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApTFxPJpjjEx7QmkMBqXXoI6q1nT-ISvNrHrtMLGGKfAtrF936Oqq6yKdwo7Ph0MO9NxwDPc4WEZFFPv0SaQDbJgmfiu7y_0-Bcoem-FQjUXdscPLF1Up3bySZ_tkQQc9t7fiHO4xOfRwZ2JdkO6501buuJl9fTYeDIQOs0cA4I_DrbqCkPKCzekCxzZt0pYiyau1L6cTaEOIlofXK0MwayFalH73WxRsQv4H9cpqCxaQSJZBPDGLV"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Candle Keeper 2D Horror Puzzle Game -->
+<div class="interactive-card bg-gradient-obsidian border-gradient-silver rounded-3xl p-6 sm:p-8 card-drop-shadow hover:border-white/40 transition-all duration-300 overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-sheen pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
+<div class="lg:col-span-8 space-y-3.5">
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="font-mono text-xs text-zinc-400 uppercase tracking-wider font-semibold">Academic Game Project</span>
+</div>
+<h3 class="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">
+            Candle Keeper: The Last Flame
+          </h3>
+<p class="text-sm text-zinc-300 leading-relaxed font-normal">
+            A 2D atmospheric horror mystery &amp; puzzle exploration game centered on dark environmental storytelling, original character artwork, and Victorian candlelit ambiance.
+          </p>
+</div>
+<div class="lg:col-span-4 flex justify-center">
+<div class="w-full max-w-[240px] aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 bg-black shadow-xl group hover:border-white/50 transition-all">
+<img alt="Candle Keeper artwork concept" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmym0RpRw4YjY0UbLznXkiUbzYRM5ntJm08PQmTrZh0NhZ_AK3ttXyeQ2tgfrxRApeiQPwBaZPZoTrZWDPYE5L2iVSo0gRq3lKbARnibJC_Q7H5Yu4usB20m_S_T21akNYXL2yWh81ifMhEj_HL9KRZuQVRrqmQ1YzDMBURQ9jqMj1o5ax5g-Vo-h37XeQ8yQndLWIl26n1-B-lRBnV_8by_nf-nQ24FCh7y3eY2ggIA9G-iuVkfp8"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: EduLedger Student Academic Record Management System -->
+<div class="interactive-card bg-gradient-obsidian border-gradient-silver rounded-3xl p-6 sm:p-8 card-drop-shadow hover:border-white/40 transition-all duration-300 overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-sheen pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
+<div class="lg:col-span-8 space-y-3.5">
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="font-mono text-xs text-zinc-400 uppercase tracking-wider font-semibold">3rd Year Academic Project (2024 / 2026)</span>
+</div>
+<h3 class="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">
+            EduLedger — Student Academic Record Management System
+          </h3>
+<p class="text-sm text-zinc-300 leading-relaxed font-normal">
+            A student academic record management system that organizes, stores, and manages student records for easier access, streamlined retrieval, and efficient academic information management.
+          </p>
+</div>
+<div class="lg:col-span-4 flex justify-center">
+<div class="w-full max-w-[240px] aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 bg-black shadow-xl group hover:border-white/50 transition-all">
+<img alt="EduLedger Student Academic Record Management System login interface" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvVDKvthVVKjFe2GL3rne26qyYJ20fAaPqKr7EOHMPuDbtHcqNKpz5Gi-i507ktYc6vlT_rJJ8nwVsLE5D08Y2HawlU_8YRi4rqaq4Rd4odsgitffJa54jpNPn-13d9p2irNfkccDk4Bi4R_5fg33i-9LNjfStYcpLrE4mJm1OkFLVw9I_WgsRSpcXuza5nS6uAQkFdTvKUoXe_WXskDU0wjPYkqC44doNHX-GmQDMbZC5e9PbHJia"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Section 02 -->
+<!-- ======================================================== -->
+<!-- SECTION 03: CONTACT & INQUIRY                            -->
+<!-- ======================================================== -->
+<section class="relative" id="contact">
+<div class="interactive-card bg-gradient-obsidian border-gradient-silver rounded-4xl sm:rounded-5xl p-6 sm:p-10 md:p-12 relative overflow-hidden card-drop-shadow">
+<!-- Ambient sheen -->
+<div class="absolute inset-0 bg-gradient-sheen pointer-events-none"></div>
+<div class="bg-gradient-to-b from-[#18181d] via-[#131316] to-[#0d0d10] rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Side: Interactive Contact Form & Actions -->
+<div class="lg:col-span-7 space-y-6">
+<div>
+<!-- Prominent Syne 03 Index -->
+<div class="flex items-baseline gap-4 mb-2">
+<span class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white/90 tracking-tighter leading-none select-none">03</span>
+<div class="flex flex-col">
+<span class="font-mono text-[11px] text-zinc-400 font-bold uppercase tracking-widest">// Get In Touch</span>
+<div class="w-4 h-4 starburst-4 bg-white/40 mt-1"></div>
+</div>
+</div>
+<h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight uppercase leading-tight bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+                    Let's Connect / Get in Touch.
+                  </h2>
+<p class="text-zinc-400 text-xs sm:text-sm leading-relaxed mt-2 font-normal">
+                    Whether you are looking for expressive digital character art, front-end interface engineering, or capstone collaboration, feel free to reach out.
+                  </p>
+</div>
+<!-- Quick Action Buttons: Email Direct & Download Résumé -->
+<div class="flex flex-wrap items-center gap-3">
+<a class="btn-shimmer px-5 py-2.5 rounded-full bg-gradient-to-r from-white via-zinc-100 to-zinc-200 hover:from-white hover:to-white text-black font-mono font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2 shadow-[0_4px_20px_rgba(255,255,255,0.2)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_25px_rgba(255,255,255,0.35)]" href="mailto:marvi.nebres.it@example.com">
+<i class="fa-solid fa-envelope"></i>
+<span class="">marvi.nebres.it@example.com</span>
+</a>
+<a class="px-5 py-2.5 rounded-full bg-[#202025] hover:bg-zinc-800 text-zinc-200 border border-white/15 hover:border-white/40 font-mono font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2 transition-all hover:-translate-y-0.5 shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]" href="mailto:marvi.nebres.it@example.com?subject=Academic%20R%C3%A9sum%C3%A9%20Request%20-%20Marvi%20Nebres" title="Download Academic Résumé">
+<i class="fa-solid fa-file-arrow-down text-zinc-300"></i>
+<span class="">Request Résumé</span>
+</a>
+</div>
+<!-- Dynamic Confirmation Message Box -->
+<div class="hidden p-4 rounded-xl bg-white/10 border border-white/30 text-white font-mono text-xs flex items-center gap-3" id="form-feedback">
+<i class="fa-solid fa-circle-check text-green-400 text-base"></i>
+<span id="form-feedback-text">Thank you! Your message has been prepared — launching mail client...</span>
+</div>
+<!-- Interactive Contact Form with Functional Mailto Launch -->
+<form class="space-y-4 pt-2" id="portfolio-contact-form" onsubmit="handleContactSubmit(event)">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block font-mono text-[11px] uppercase tracking-wider text-zinc-300 mb-1" for="contact-name">Your Name</label>
+<input class="w-full rounded-xl bg-black/80 border border-white/15 px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all focus:bg-black" id="contact-name" placeholder="John Doe" required="" type="text"/>
+</div>
+<div>
+<label class="block font-mono text-[11px] uppercase tracking-wider text-zinc-300 mb-1" for="contact-email">Email Address</label>
+<input class="w-full rounded-xl bg-black/80 border border-white/15 px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all focus:bg-black" id="contact-email" placeholder="john@example.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-mono text-[11px] uppercase tracking-wider text-zinc-300 mb-1" for="contact-subject">Inquiry Type / Subject</label>
+<select class="w-full rounded-xl bg-black/80 border border-white/15 px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all focus:bg-black" id="contact-subject">
+<option class="bg-black text-white" value="IT Project / Internship Inquiry">IT Project / Internship Inquiry</option>
+<option class="bg-black text-white" value="Digital Art &amp; Character Commission">Digital Art &amp; Character Commission</option>
+<option class="bg-black text-white" value="Web &amp; UI Design Collaboration">Web &amp; UI Design Collaboration</option>
+<option class="bg-black text-white" value="General Academic / Tech Discussion">General Academic / Tech Discussion</option>
+</select>
+</div>
+<div>
+<label class="block font-mono text-[11px] uppercase tracking-wider text-zinc-300 mb-1" for="contact-message">Message</label>
+<textarea class="w-full rounded-xl bg-black/80 border border-white/15 px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all focus:bg-black" id="contact-message" placeholder="Write your message or project requirements here..." required="" rows="3"></textarea>
+</div>
+<button class="btn-shimmer w-full py-3 rounded-xl bg-gradient-to-r from-white via-zinc-100 to-zinc-200 hover:from-white hover:to-white text-black font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-[0_4px_22px_rgba(255,255,255,0.25)] hover:shadow-[0_6px_30px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2 hover:-translate-y-0.5 cursor-pointer" id="contact-submit-btn" type="submit">
+<i class="fa-solid fa-paper-plane text-xs"></i>
+<span class="">Send Message</span>
+</button>
+</form>
+<!-- Academic Metadata Badges -->
+<div class="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-zinc-400">
+<span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-graduation-cap text-zinc-300"></i> Cebu Eastern College, Inc.</span>
+<span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-zinc-300"></i> Cebu City, Philippines</span>
+</div>
+</div>
+<!-- Right Side: Featured Character Portrait Framing -->
+<div class="lg:col-span-5 flex flex-col items-center justify-center">
+<div class="w-full max-w-[280px] aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-950 p-2 shadow-2xl relative group border border-white/20 hover:border-white/50 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.85)]">
+<div class="w-full h-full rounded-2xl overflow-hidden bg-black relative">
+<img alt="Original character illustration by Marvi Nebres" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7rexN_WloBIk4MJ4-z4z2qarfSVhOA63FyBQ-zs182M8BY8toQIpAWKdN0djvX5VW_q_1ryY8sUHLZW9JwN1yS5rbq7MuoSyqm8rd_1ITC9H0-mwRkGdaAV5uzntD_r_Ct4p190I9xDghPFIx6XRHTsGfC5ti03tZzJ1KFSlpM9Kl7gMZbYt6y0uvpNrnjWFQL0ZzZuWmYAGSAaT-MNFLfUBQceV1KwhtC7dc6AfAuvPKL9qB-4kW"/>
+<!-- Decorative overlay starburst -->
+<div class="absolute bottom-3 right-3 w-8 h-8 starburst-8 bg-white/40 drop-shadow"></div>
+</div>
+</div>
+<!-- Wordmark & signature underneath -->
+<div class="mt-4 text-center">
+<p class="font-editorial-italic text-2xl text-zinc-100 leading-none">Marvi Nebres</p>
+<p class="font-mono text-[10px] uppercase tracking-widest text-zinc-400 mt-1">Digital Artist &amp; Developer</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ContactSection -->
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: SiteFooter -->
+<footer class="border-t border-white/10 bg-[#070709] py-10 mt-12 text-center text-xs text-zinc-400 font-mono relative z-20">
+<div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="font-bold text-white uppercase font-display">Marvi Nebres</span>
+<span class="">•</span>
+<span class="text-zinc-400">BSIT Candidate &amp; Digital Artist</span>
+</div>
+<p class="text-zinc-400">
+        © 2025 Marvi Nebres · BS Information Technology, Cebu Eastern College, Inc. All rights reserved.
+      </p>
+<div class="flex items-center space-x-4">
+<a class="hover:text-white transition-colors flex items-center gap-1 text-zinc-300 font-bold" href="#home" title="Back to Top">
+<span class="">Back to Top</span>
+<i class="fa-solid fa-arrow-up"></i>
+</a>
+</div>
+</div>
+</footer>
+<!-- END: SiteFooter -->
+<!-- Interactive Scripts -->
+<script>
+  // Dynamic Tab Switcher for Portfolio Works Section
+  function switchWorkTab(tab) {
+    const artContent = document.getElementById('tab-art-content');
+    const academicContent = document.getElementById('tab-academic-content');
+    const artBtn = document.getElementById('tab-art-btn');
+    const academicBtn = document.getElementById('tab-academic-btn');
+
+    if (tab === 'art') {
+      artContent.classList.remove('hidden');
+      academicContent.classList.add('hidden');
+      artBtn.className = "px-5 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 bg-white text-black shadow-sm";
+      academicBtn.className = "px-5 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 text-zinc-400 hover:text-white";
+    } else {
+      artContent.classList.add('hidden');
+      academicContent.classList.remove('hidden');
+      academicBtn.className = "px-5 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 bg-white text-black shadow-sm";
+      artBtn.className = "px-5 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 text-zinc-400 hover:text-white";
+    }
+  }
+
+  // Functional Contact Form Submission
+  function handleContactSubmit(event) {
+    event.preventDefault();
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const subject = document.getElementById('contact-subject').value;
+    const message = document.getElementById('contact-message').value.trim();
+
+    const feedback = document.getElementById('form-feedback');
+    const feedbackText = document.getElementById('form-feedback-text');
+    feedbackText.textContent = "Thank you, " + name + "! Your message has been prepared — launching mail client...";
+    feedback.classList.remove('hidden');
+
+    const mailtoSubject = encodeURIComponent("[" + subject + "] From " + name);
+    const mailtoBody = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\nInquiry Type: " + subject + "\n\nMessage:\n" + message);
+
+    setTimeout(() => {
+      window.location.href = `mailto:marvi.nebres.it@example.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+    }, 400);
+  }
+
+  // Interactive Cursor Spotlight Listener
+  (function() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let ticking = false;
+    window.addEventListener('mousemove', function(e) {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          const x = e.clientX + 'px';
+          const y = e.clientY + 'px';
+          document.documentElement.style.setProperty('--mouse-x', x);
+          document.documentElement.style.setProperty('--mouse-y', y);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+</script>
+</body></html>
